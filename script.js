@@ -4,8 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeModalBtn = document.querySelector('.close-btn');
     const modalBody = document.getElementById('modal-body');
     const scrollToTopBtn = document.getElementById('scroll-to-top');
-    
-    // Data for modal content
+
+    // Team members data with placeholder images (URL & name same, only improvement in image)
     const teamMembersData = [
         {
             id: 1,
@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     ];
 
-    // Function for smooth scrolling
+    // Smooth scroll for all anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -47,12 +47,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Open modal on card click
+    // Open modal on team card click
     teamCards.forEach(card => {
         card.addEventListener('click', () => {
             const memberId = parseInt(card.dataset.id);
             const member = teamMembersData.find(m => m.id === memberId);
-            
+
             if (member) {
                 modalBody.innerHTML = `
                     <img src="${member.image}" alt="${member.name}">
@@ -65,19 +65,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Close modal when the 'x' is clicked
+    // Close modal when 'x' clicked
     closeModalBtn.addEventListener('click', () => {
         modal.style.display = 'none';
     });
 
-    // Close modal when clicking outside of it
+    // Close modal on outside click
     window.addEventListener('click', (event) => {
         if (event.target === modal) {
             modal.style.display = 'none';
         }
     });
 
-    // Scroll-to-top button functionality
+    // Scroll to top button functionality
     window.addEventListener('scroll', () => {
         if (window.scrollY > 300) {
             scrollToTopBtn.style.display = 'block';
